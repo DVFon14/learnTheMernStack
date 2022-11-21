@@ -9,7 +9,10 @@ const getGoals = (req,res) =>{
 //route POST/api/goals
 //private access
 const setGoal = (req,res) =>{
-    console.log(req.body) //the request object has a body property
+    if(!req.body.text){
+        res.status(400)
+        throw new Error(`Please add a txt field`)
+    }
     res.status(200).json({message:'Set goals'})
 }
 
