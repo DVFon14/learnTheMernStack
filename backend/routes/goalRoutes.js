@@ -30,7 +30,7 @@ router.route('/:id').put(updateGoal).delete(deleteGoal)
 //     res.status(200).json({message:`Delete goal ${req.params.id}`})
 // })
 //function above is replaced with: 
-//outer.delete('/:id',deleteGoal)
+// router.delete('/:id',deleteGoal)
 
 
 module.exports = router
