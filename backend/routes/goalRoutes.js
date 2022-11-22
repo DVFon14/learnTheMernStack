@@ -2,8 +2,12 @@ const express = require('express') //common js module syntax
 const router = express.Router()
 const { getGoals, setGoal,updateGoal,deleteGoal } = require('../controllers/goalController')
 
-router.route('/').get(getGoals).post(setGoal) //<--this gets rid of the ned for lines 12 and 19. They have the same routes, so we can chain these
-router.route('/:id').put(updateGoal).delete(deleteGoal)
+const { protect } = require('../middleware/authMiddleware')
+
+router.route('/').get(protect, getGoals).post(protect,setGoal) //<--this gets rid of the ned for lines 12 and 19. They have the same routes, so we can chain these
+router.route('/:id').put(protect,updateGoal).delete(protect,deleteGoal)
+
+
 
 // router.get('/', (req,res)=>{ //we changed this from app.get('/api/goals' in server.js to router.get('/'. Why?
 //     res.status(200).json({message:'Get goals'})
